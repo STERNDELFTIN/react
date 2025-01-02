@@ -69,6 +69,10 @@ button {
   margin: 10px;
 }
 
+.like-button span {
+  cursor: pointer;
+}
+
 /* modal창 */
 .modal {
   margin-top: 20px;
