@@ -5,7 +5,8 @@ import './App.css';
 function App() {
 
 let [title, changeTitle] = useState(['남자 코트 추천', '강남 우동맛집', '파이썬 독학']);
-let [like, onLike] = useState(0);
+let [aloneLike, onLike] = useState(0);
+let [like, setLike] = useState([0,0,0]);
 let [modal, setModal] = useState(false);
 
 return (
@@ -35,19 +36,23 @@ return (
 
   {/* 좋아요 */}
   <div className="like-button">
-    <h4><span onClick={()=>onLike(like+1)}>👍</span> { like } </h4>
+    <h4><span onClick={()=>onLike(aloneLike+1)}>👍</span> { aloneLike } </h4>
   </div>
 
   {/* map 이용해서 HTML 반복생성 */}
   {
-  title.map(function(title, i){
-  return (
-  <div className="list" key={i}>
-    <h4>{ title }</h4>
-    <p>01월 02일 발행</p>
-  </div>
-  )
-  })
+    title.map(function(title, i){
+      return (
+        <div className="list" key={i}>
+          <h4>{ title } <span onClick={()=>{ 
+            const copy = [...like];
+            copy[i]++;
+            setLike(copy);
+           }}>👍</span> { like[i] } </h4>
+          <p>01월 02일 발행</p>
+        </div>
+      )
+    })
   }
 
   {/* 삼항 연산자 */}
