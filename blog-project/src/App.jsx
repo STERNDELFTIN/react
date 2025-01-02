@@ -5,6 +5,7 @@ import './App.css';
 function App() {
 
 let [title, changeTitle] = useState(['남자 코트 추천', '강남 우동맛집', '파이썬 독학']);
+let [titleIndex, setTitleIndex] = useState(0);
 let [aloneLike, onLike] = useState(0);
 let [like, setLike] = useState([0,0,0]);
 let [modal, setModal] = useState(false);
@@ -44,7 +45,9 @@ return (
     title.map(function(title, i){
       return (
         <div className="list" key={i}>
-          <h4>{ title } <span onClick={()=>{ 
+          <h4 onClick={()=>{
+            setModal(true); setTitleIndex(i);
+          }}>{ title } <span onClick={()=>{ 
             const copy = [...like];
             copy[i]++;
             setLike(copy);
@@ -57,7 +60,7 @@ return (
 
   {/* 삼항 연산자 */}
   {
-  modal == true ? <Modal title={title} color={'skyblue'} changeTitle={changeTitle} /> : null
+  modal == true ? <Modal titleIndex={ titleIndex } title={ title } date={'01월 02일 발행'} content='상세내용입니다.' /> : null
   }
 
 </div>
@@ -66,15 +69,10 @@ return (
 
 function Modal(props){
 return (
-<div className='modal' style={{ background : props.color } }>
-    <h4>{ props.title[0] }</h4>
-    <p>날짜</p>
-    <p>상세내용</p>
-    <button onClick={()=>{ 
-      let copy = [...props.title];
-      copy[0] = '여자 코트 추천';
-      props.changeTitle(copy);
-     }}>글수정</button>
+<div className='modal'>
+    <h4>{ props.title[props.titleIndex] }</h4>
+    <p> { props.date } </p>
+    <p> { props.content } </p>
 </div>
 );
 }
