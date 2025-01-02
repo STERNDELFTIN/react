@@ -59,6 +59,16 @@ div {
   border-bottom: 1px solid grey;
 }
 
+/* 버튼 */
+button {
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  margin: 10px;
+}
+
 /* modal창 */
 .modal {
   margin-top: 20px;
