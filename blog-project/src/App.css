@@ -67,6 +67,7 @@ button {
   color: white;
   padding: 5px 10px;
   margin: 10px;
+  cursor: pointer;
 }
 
 .like-button span {

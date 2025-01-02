@@ -57,7 +57,7 @@ return (
 
   {/* 삼항 연산자 */}
   {
-  modal == true ? <Modal title={title} color={'skyblue'} /> : null
+  modal == true ? <Modal title={title} color={'skyblue'} changeTitle={changeTitle} /> : null
   }
 
 </div>
@@ -67,9 +67,14 @@ return (
 function Modal(props){
 return (
 <div className='modal' style={{ background : props.color } }>
-  <h4>{ props.title }</h4>
-  <p>날짜</p>
-  <p>상세내용</p>
+    <h4>{ props.title[0] }</h4>
+    <p>날짜</p>
+    <p>상세내용</p>
+    <button onClick={()=>{ 
+      let copy = [...props.title];
+      copy[0] = '여자 코트 추천';
+      props.changeTitle(copy);
+     }}>글수정</button>
 </div>
 );
 }
