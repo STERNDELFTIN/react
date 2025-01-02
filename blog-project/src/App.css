@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+/*  */
+.black-nav {
+  display: flex;
+  background: black;
+  width: 100%;
+  color: white;
+  padding-left: 20px;
+}
