@@ -81,3 +81,23 @@ button {
   background: #eee;
   text-align: left;
 }
+
+/* 글 발행 */
+.title-insert {
+  margin-top: 10px;
+}
+.title-insert button {
+  margin: 0px;
+  border-radius: 0;
+}
+.title-insert input {
+  border-radius: 0;
+  border: 1px solid black;
+  padding: 4px;
+}
+
+/* 글 삭제 버튼 */
+.delete-btn {
+  margin: 0px;
+  margin-bottom: 10px;
+}
