@@ -4,48 +4,43 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 // import Container from 'react-bootstrap/Container';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+
+import MainPage from './routes/Main.jsx';
+import DetailPage from './routes/Detail.jsx';
 import mainBg from './img/bg-150x150.png';
 import products from './data.js';
 
 function App() {
-
-  let [shoes] = useState(products);
+  const [shoes] = useState(products);
+  let navigate = useNavigate();
 
   return (
     <div className='App'>
-            <Navbar bg="dark" data-bs-theme="dark">
+
+      <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">STORE</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#cart">Cart</Nav.Link>
+            {/* <Link to="/">Home</Link>
+            <Link to="/detail">Detail</Link> */}
+            <Link onClick={()=>{navigate('/')}}>Home</Link>
+            <Link onClick={()=>{navigate('/detail')}}>Detail</Link>
+            <Link onClick={()=>{navigate(-1)}}>←</Link>
+            <Link onClick={()=>{navigate(1)}}>→</Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <div className='main-bg' style={ { backgroundImage: 'url(' + mainBg + ')' }}></div>
+      <Routes>
+        <Route path="/" element={ <MainPage shoes={shoes} mainBg={mainBg}/> } />
+        <Route path="/detail" element={ <DetailPage shoes={shoes} /> } />
+        <Route path="/about" element={ <div>about</div> } />
+      </Routes>
 
-      <div className='container'>
-        <div className='row'>
-          {
-            shoes.map((item) => {
-              return <ShoesInfo img={item.img} title={item.title} price={item.price} />
-            })
-          }
-        </div>
-      </div>
+      
     </div>
   )
-}
-
-function ShoesInfo(props) {
-  return (
-    <div className='col-md-4'>
-      <img src={props.img} width="80%"/>
-      <h4>{props.title}</h4>
-      <p>{props.price}</p>
-    </div>
-  );
 }
 
 export default App

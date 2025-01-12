@@ -1,3 +1,9 @@
+a {
+  text-decoration: none;
+  margin-right: 15px;
+  color: rgb(153, 167, 255);
+}
+
 .main-bg {
   height: 300px;
   /* background-image: url('./img/bg-150x150.png'); */
