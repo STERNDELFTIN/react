@@ -1,5 +1,5 @@
 
-function MainPage( props ) {
+function Main( props ) {
     return (
       <>
         <div className='main-bg' style={ { backgroundImage: `url(${props.mainBg})`}}></div>
@@ -27,4 +27,4 @@ function MainPage( props ) {
     );
   }
 
-  export default MainPage;
+  export default Main;

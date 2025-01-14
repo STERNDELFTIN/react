@@ -1,4 +1,4 @@
-function DetailPage( {shoes} ) {
+function Detail( {shoes} ) {
     return (
       <div className="container">
         <div className="row">
@@ -16,4 +16,4 @@ function DetailPage( {shoes} ) {
     );
   }
 
-  export default DetailPage;
+  export default Detail;
