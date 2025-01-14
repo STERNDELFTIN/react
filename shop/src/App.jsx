@@ -38,7 +38,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={ <Main shoes={shoes} mainBg={mainBg}/> } />
-        <Route path="/detail" element={ <Detail shoes={shoes} /> } />
+        
+        <Route path="/detail/:id" element={ <Detail shoes={shoes} /> } />
+        
         {/* <Route path="/about" element={ <div>about</div> } />
         <Route path="/about/member" element={ <div>about</div> } />
         <Route path="/about/location" element={ <div>about</div> } /> */}
