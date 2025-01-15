@@ -1,5 +1,6 @@
 
 function Main( props ) {
+  let shoes = props.shoes;
     return (
       <>
         <div className='main-bg' style={ { backgroundImage: `url(${props.mainBg})`}}></div>
@@ -7,7 +8,7 @@ function Main( props ) {
           <div className='container'>
             <div className='row'>
             {
-              props.shoes.map((item, index) => {
+              shoes.map((item, index) => {
                 return <ShoesInfo key={ index } img={item.img} title={item.title} price={item.price} />
               })
             }

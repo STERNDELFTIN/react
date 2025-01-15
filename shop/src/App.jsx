@@ -14,7 +14,7 @@ import mainBg from './img/bg-150x150.png';
 import products from './data.js';
 
 function App() {
-  const [shoes] = useState(products);
+  const [shoes, changeShoes] = useState(products);
   let navigate = useNavigate();
 
   return (
@@ -34,12 +34,16 @@ function App() {
             <button className="next-btn" onClick={()=>{navigate(1)}}>→</button>
           </Nav>
         </Container>
+        <button onClick={ () => {
+            shoes.sort((item1, item2) => item1.title.localeCompare(item2.title));
+            console.log(shoes);
+          } }>정렬</button>
       </Navbar>
 
       <Routes>
-        <Route path="/" element={ <Main shoes={shoes} mainBg={mainBg}/> } />
+        <Route path="/" element={ <Main shoes={shoes} sortShoes={changeShoes} mainBg={mainBg}/> } />
         
-        <Route path="/detail/:id" element={ <Detail shoes={shoes} /> } />
+        <Route path="/detail/:id" element={ <Detail shoes={shoes} changeShoes={changeShoes} /> } />
         
         {/* <Route path="/about" element={ <div>about</div> } />
         <Route path="/about/member" element={ <div>about</div> } />
