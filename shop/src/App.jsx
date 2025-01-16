@@ -5,7 +5,6 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import styled from 'styled-components'
 
 import Main from './routes/Main.jsx';
 import Detail from './routes/Detail.jsx';
