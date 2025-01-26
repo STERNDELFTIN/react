@@ -32,8 +32,13 @@ function Detail( props ) {
     /^\d*$/.test(msg) ? setAlertMsg(false) : setAlertMsg(true);
   }, [msg, alertMsg]);
 
+  // Tab UI
+  const [activeTab, setActiveTab] = useState(0); // tab 인덱스 번호
+  const tabs = ["HTML", "CSS", "JS"];
+  const contents = [ "HTML CONTENTS Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, temporibus cum soluta delectus itaque dolores labore cumque, aliquid beatae molestias possimus perferendis. Consequuntur enim aliquid nihil sint! Quasi, possimus! Placeat.", "CSS CONTENTS Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, temporibus cum soluta delectus itaque dolores labore cumque, aliquid beatae molestias possimus perferendis. Consequuntur enim aliquid nihil sint! Quasi, possimus! Placeat.", "JS CONTENTS Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, temporibus cum soluta delectus itaque dolores labore cumque, aliquid beatae molestias possimus perferendis. Consequuntur enim aliquid nihil sint! Quasi, possimus! Placeat." ];
+
     return (
-      <div className="container">
+      <div className="container detail-container">
 
         { isActive && (<Timer time={time} />) }
         
@@ -50,6 +55,8 @@ function Detail( props ) {
             <button className="btn btn-danger">주문하기</button> 
           </div>
         </div>
+
+        <TabUI tabs={tabs} contents={contents} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       </div> 
     );
@@ -77,6 +84,30 @@ function Detail( props ) {
       <AlertDiv>
         잘못된 숫자를 입력하셨습니다.
       </AlertDiv>
+    );
+  }
+
+  function TabUI({tabs, contents, activeTab, setActiveTab}) {
+    return(
+      <div className="tab-container">
+      <div className="tab-btn">
+        {
+          tabs.map((tab, i) => (
+            <button key={i} 
+            onClick={()=>{setActiveTab(i)}}
+            style={{
+              backgroundColor : activeTab === i ? "#fdd553" : "#fff",
+            }}>
+              { tab }
+            </button>
+          ))
+        }
+      </div>
+      <div className="tab-box">
+        <h2>{ tabs[activeTab] }</h2>
+        { contents[activeTab] }
+      </div>
+    </div>
     );
   }
 

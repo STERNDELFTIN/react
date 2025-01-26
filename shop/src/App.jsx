@@ -41,7 +41,7 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path="/" element={ <Main shoes={shoes} sortShoes={changeShoes} mainBg={mainBg}/> } />
+        <Route path="/" element={ <Main shoes={shoes} setShoes={changeShoes} mainBg={mainBg}/> } />
         
         <Route path="/detail/:id" element={ <Detail shoes={shoes} changeShoes={changeShoes} /> } />
         
