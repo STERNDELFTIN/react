@@ -13,6 +13,8 @@ import Event from './routes/Event.jsx';
 import mainBg from './img/bg-150x150.png';
 import products from './data.js';
 
+import Cart from './routes/Cart.jsx';
+
 // Context API 사용법
 export let Context1 = createContext(); // Context 생성 (state 보관함)
 
@@ -49,11 +51,13 @@ function App() {
 
         <Route path="/detail/:id" element={
           // <Context.Provider>로 원하는 컴포넌트 감싸기
-          <Context1.Provider value={{inventory}}> {/* 공유를 위한 속성 추가 value={{ state1, state2, ... }} */}
-            <Detail shoes={shoes} changeShoes={changeShoes} />
-          </Context1.Provider>
-          // <Detail shoes={shoes} changeShoes={changeShoes} />
+          // <Context1.Provider value={{inventory}}> {/* 공유를 위한 속성 추가 value={{ state1, state2, ... }} */}
+          //   <Detail shoes={shoes} changeShoes={changeShoes} />
+          // </Context1.Provider>
+          <Detail shoes={shoes} changeShoes={changeShoes} />
         } />
+        
+        <Route path="/cart" element={<Cart />} />
 
         {/* <Route path="/about" element={ <div>about</div> } />
         <Route path="/about/member" element={ <div>about</div> } />
