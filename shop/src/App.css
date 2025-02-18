@@ -59,3 +59,12 @@ button {
   padding: 5px 10px;
   font-weight: bold;
 }
+
+/* 전환 애니메이션 */
+.start {
+  opacity: 0; /* 투명도 */
+}
+.end {
+  opacity: 1;
+  transition: opacity 0.5s; /* transition - 애니메이션 주는 스타일 */
+}

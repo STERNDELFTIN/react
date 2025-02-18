@@ -88,6 +88,20 @@ function Detail( props ) {
   }
 
   function TabUI({tabs, contents, activeTab, setActiveTab}) {
+    
+    // 탭이 변경될때마다 실행
+    /* 리액트의 automatic batching 기능
+    state 변경이 되고나서 재렌더링 한 번 */
+    let [fade, setFade] = useState('');
+    useEffect(() => {
+      let fadeTime = setTimeout(()=> { setFade('end')}, 50)
+
+      return ()=>{
+        clearTimeout(fadeTime);
+        setFade('');
+      }
+    }, [tabs]);
+
     return(
       <div className="tab-container">
       <div className="tab-btn">
@@ -103,7 +117,7 @@ function Detail( props ) {
           ))
         }
       </div>
-      <div className="tab-box">
+      <div className={`tab-box start ${fade}`}>
         <h2>{ tabs[activeTab] }</h2>
         { contents[activeTab] }
       </div>
