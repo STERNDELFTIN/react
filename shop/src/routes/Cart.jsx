@@ -1,13 +1,14 @@
 import { Table } from 'react-bootstrap';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeName } from '../store.js';
+import { setCount } from '../store.js';
 
 function Cart() {
     // 장바구니 데이터를 state에 보관해두고 데이터바인딩하기
-    let value = useSelector((state) => { return state }); // Redus store 가져와줌
-    console.log(value);
-    console.log(value.user);
-    console.log(value.stock);
+    let state = useSelector((state) => { return state }); // Redus store 가져와줌
+    console.log(state);
+    console.log(state.user);
+    console.log(state.stock);
 
     // store의 state 중에 원하는 것만 골라서 가져올 수 있음
     let user = useSelector((state) => { return state.user; });
@@ -16,8 +17,12 @@ function Cart() {
     let addedItems = useSelector((state) => { return state.addedItems; });
     console.log(addedItems);
 
+    // store.js로 요청 보내주는 함수
+    let dispatch = useDispatch();
+
     return (
         <div>
+            { state.user }의 장바구니
             <Table>
                 <thead>
                     <tr>
@@ -28,12 +33,22 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>안녕</td>
-                        <td>안녕</td>
-                        <td>안녕</td>
-                    </tr>
+                    {
+                        addedItems.map((item, i) =>
+                            <tr key={i}>
+                                <td>1</td>
+                                <td>{ state.addedItems[i].name }</td>
+                                <td>{ state.addedItems[i].count }</td>
+                                <td>
+                                    <button onClick={() => {
+                                        // 누르면 state 변경하게
+                                        // dispatch(changeName())
+                                        dispatch(setCount(i))
+                                    }}>+</button>
+                                </td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </Table>
         </div>
