@@ -51,10 +51,10 @@ function App() {
 
         <Route path="/detail/:id" element={
           // <Context.Provider>로 원하는 컴포넌트 감싸기
-          // <Context1.Provider value={{inventory}}> {/* 공유를 위한 속성 추가 value={{ state1, state2, ... }} */}
-          //   <Detail shoes={shoes} changeShoes={changeShoes} />
-          // </Context1.Provider>
+          <Context1.Provider value={{inventory}}> {/* 공유를 위한 속성 추가 value={{ state1, state2, ... }} */}
           <Detail shoes={shoes} changeShoes={changeShoes} />
+          </Context1.Provider>
+          // <Detail shoes={shoes} changeShoes={changeShoes} />
         } />
         
         <Route path="/cart" element={<Cart />} />

@@ -5,6 +5,9 @@ import styled from 'styled-components';
 // state 사용을 위한 Context import
 import { Context1 } from '../App.jsx';
 
+import { useDispatch, useSelector } from "react-redux";
+import { setItem } from '../store/cartSlice'
+
 function Detail(props) {
   //
   let { id } = useParams(); // URL에 입력한 id
@@ -43,6 +46,9 @@ function Detail(props) {
   // useContext(Context)
   let { inventory } = useContext(Context1); // 보관함 해체해줌
 
+  let dispatch = useDispatch();
+  let cart = useSelector((state) => state.cart);
+
   return (
     <div className="container detail-container">
 
@@ -58,8 +64,22 @@ function Detail(props) {
           <h4 className="pt-5">{shoes.title}</h4>
           <p>{shoes.content}</p>
           <p>{shoes.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            dispatch(setItem({ id: shoes.id, name: shoes.title })) // 필요한 값 전달
+          }}>주문하기</button>
         </div>
+      </div>
+
+      {/* 장바구니 목록 */}
+      <div>
+        <h3>장바구니 목록</h3>
+        {
+          cart.map((item, i) => 
+            <div key={i}>
+              { item.name } : { item.count }
+            </div>
+          )
+        }
       </div>
 
       <TabUI shoes={props.shoes} tabs={tabs} contents={contents} activeTab={activeTab} setActiveTab={setActiveTab} />

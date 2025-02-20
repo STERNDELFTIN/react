@@ -1,11 +1,11 @@
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeName } from '../store.js';
-import { setCount } from '../store.js';
+// import { changeName } from '../store/userSlice.js';
+import { setCount } from '../store/cartSlice';
 
 function Cart() {
     // 장바구니 데이터를 state에 보관해두고 데이터바인딩하기
-    let state = useSelector((state) => { return state }); // Redus store 가져와줌
+    let state = useSelector((state) => { return state }); // Redux store 가져와줌
     console.log(state);
     console.log(state.user);
     console.log(state.stock);
@@ -14,8 +14,8 @@ function Cart() {
     let user = useSelector((state) => { return state.user; });
 
     // array / object
-    let addedItems = useSelector((state) => { return state.addedItems; });
-    console.log(addedItems);
+    let cart = useSelector((state) => { return state.cart; });
+    console.log(cart);
 
     // store.js로 요청 보내주는 함수
     let dispatch = useDispatch();
@@ -34,16 +34,16 @@ function Cart() {
                 </thead>
                 <tbody>
                     {
-                        addedItems.map((item, i) =>
+                        cart.map((item, i) =>
                             <tr key={i}>
-                                <td>1</td>
-                                <td>{ state.addedItems[i].name }</td>
-                                <td>{ state.addedItems[i].count }</td>
+                                <td>{ state.cart[i].id }</td>
+                                <td>{ state.cart[i].name }</td>
+                                <td>{ state.cart[i].count }</td>
                                 <td>
                                     <button onClick={() => {
                                         // 누르면 state 변경하게
                                         // dispatch(changeName())
-                                        dispatch(setCount(i))
+                                        dispatch(setCount(state.cart[i].id))
                                     }}>+</button>
                                 </td>
                             </tr>
